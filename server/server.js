@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 app.use(require('./routes/usuario.js'))
 
-mongoose.connect('mongodb://localhost:27017/cafe', (err, resp) => {
+mongoose.connect(process.env.NODE_ENV, (err, resp) => {
 
     if (err) throw err;
 
