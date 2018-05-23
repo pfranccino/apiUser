@@ -51,7 +51,7 @@ app.post('/usuario', function(req, res) {
         }
 
         res.json({
-            usuario: usuarioDB
+            usuario
         })
 
     });
