@@ -67,6 +67,7 @@ app.put('/usuarios/:id', function(req, res) {
 
     Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, usuarioUpdate) => {
         if (err) {
+
             return res.status(400).json({
                 err
             })
@@ -92,8 +93,7 @@ app.delete('/usuarios/:id', function(req, res) {
         if (err) {
             return res.status(400).json({
                 err
-
-            });
+            })
         } else {
 
             if (!usuarioUpdate.estado) {
@@ -113,25 +113,23 @@ app.delete('/usuarios/:id', function(req, res) {
 });
 
 
-app.get('/usuarios/:id', function(req, resp) {
+app.get('/usuarios/:id', function(req, res) {
 
     let id = req.params.id
+    console.log(id)
 
-    Usuario.findById(id, (err, res) => {
+    Usuario.findById(id).exec((err, resp) => {
 
         if (err) {
             return res.status(400).json({
                 err
-
-            });
-        } else {
-
-            res.json({
-                usuario: res
             })
         }
+        res.json({
+            usuario: resp
+        })
 
-    })
+    });
 
 });
 
