@@ -52,7 +52,7 @@ app.post('/usuarios', function(req, res) {
 
         res.json({
             usuario
-        })
+        });
 
     });
 
@@ -109,6 +109,29 @@ app.delete('/usuarios/:id', function(req, res) {
     });
 
 
+
+});
+
+
+app.get('/usuarios/:id', function(req, resp) {
+
+    let id = req.params.id
+
+    Usuario.findById(id, (err, res) => {
+
+        if (err) {
+            return res.status(400).json({
+                err
+
+            });
+        } else {
+
+            res.json({
+                usuario: res
+            })
+        }
+
+    })
 
 });
 
