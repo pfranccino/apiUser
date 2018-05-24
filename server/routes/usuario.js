@@ -10,7 +10,7 @@ const Usuario = require('../models/usuario')
 
 
 
-app.get('/usuario', function(req, res) {
+app.get('/usuarios', function(req, res) {
 
 
     Usuario.find({ estado: true }).exec((err, resp) => {
@@ -21,7 +21,7 @@ app.get('/usuario', function(req, res) {
             })
         }
         res.json({
-            usuario: resp
+            usuarios: resp
         })
 
     });
@@ -29,7 +29,7 @@ app.get('/usuario', function(req, res) {
 
 
 
-app.post('/usuario', function(req, res) {
+app.post('/usuarios', function(req, res) {
 
     let body = req.body;
 
@@ -60,7 +60,7 @@ app.post('/usuario', function(req, res) {
 });
 
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuarios/:id', function(req, res) {
     let id = req.params.id;
 
     let body = _.pick(req.body, ['nombre', 'email', 'estado', 'img'])
@@ -79,7 +79,7 @@ app.put('/usuario/:id', function(req, res) {
 });
 
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuarios/:id', function(req, res) {
 
     let id = req.params.id;
 
