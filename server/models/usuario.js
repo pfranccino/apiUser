@@ -6,7 +6,7 @@ let Schema = mongoose.Schema;
 
 let rolesValidos = {
     values: ['ADMIN', 'USER'],
-    message: 'rol no valido'
+    message: '{PATH} no valido'
 }
 
 let usuarioSchema = new Schema({
@@ -55,7 +55,6 @@ usuarioSchema.methods.toJSON = function() {
     let usuario = this
     let usuarioObject = usuario.toObject()
     delete usuarioObject.password
-
     return usuarioObject;
 }
 

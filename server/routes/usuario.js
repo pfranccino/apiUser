@@ -13,16 +13,23 @@ const Usuario = require('../models/usuario')
 app.get('/usuarios', function(req, res) {
 
 
-    Usuario.find({ estado: true }).exec((err, resp) => {
+
+    Usuario.find({ estado: true }).exec((err, usuarios) => {
 
         if (err) {
             return res.status(400).json({
                 err
             })
         }
-        res.json({
-            usuarios: resp
-        })
+
+        Usuario.count({ estado: true }, (err, count) => {
+
+            res.json({
+                items: count,
+                usuarios: usuarios
+            });
+
+        });
 
     });
 });
