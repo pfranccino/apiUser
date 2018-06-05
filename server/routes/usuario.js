@@ -8,9 +8,10 @@ const _ = require('underscore');
 
 const Usuario = require('../models/usuario')
 
+const { roleValidator, tokenValidator } = require('../middlewares/autentication')
 
 
-app.get('/usuarios', function(req, res) {
+app.get('/usuarios', tokenValidator, function(req, res) {
 
 
 
@@ -67,7 +68,7 @@ app.post('/usuarios', function(req, res) {
 });
 
 
-app.put('/usuarios/:id', function(req, res) {
+app.put('/usuarios/:id', tokenValidator, function(req, res) {
     let id = req.params.id;
 
     let body = _.pick(req.body, ['nombre', 'email', 'estado', 'img'])
@@ -87,7 +88,7 @@ app.put('/usuarios/:id', function(req, res) {
 });
 
 
-app.delete('/usuarios/:id', function(req, res) {
+app.delete('/usuarios/:id', tokenValidator, function(req, res) {
 
     let id = req.params.id;
 
@@ -120,7 +121,7 @@ app.delete('/usuarios/:id', function(req, res) {
 });
 
 
-app.get('/usuarios/:id', function(req, res) {
+app.get('/usuarios/:id', tokenValidator, function(req, res) {
 
     let id = req.params.id
     console.log(id)
